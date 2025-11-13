@@ -1,0 +1,55 @@
+PIC18F458 Interfacing with 16*2 LCD Display Code -
+#include <p18f458.h>
+// LCD control pins
+#define RS LATDbits.LATD0
+#define E LATDbits.LATD1
+// LCD data port
+#define LCD PORTB
+void lcd_cmd(unsigned char);
+void lcd_data(unsigned char);
+void delay_ms(unsigned int);
+void main(void)
+{
+// TRIS settings
+TRISB = 0x00; // LCD data out
+TRISD = 0x00; // LCD control out
+// Clear ports
+LATB = 0x00;
+LATD = 0x00;
+delay_ms(20);
+// LCD Initialization
+lcd_cmd(0x38); // 8-bit, 2-line
+lcd_cmd(0x0C); // Display ON, cursor OFF
+lcd_cmd(0x01); // Clear
+lcd_cmd(0x06); // Auto increment
+lcd_cmd(0x80); // Begin at 1stline
+// Display text
+lcd_data('H');
+lcd_data('E');
+lcd_data('L');
+lcd_data('L');
+lcd_data('O');
+while(1);
+}
+void lcd_cmd(unsigned char cmd)
+{
+LCD = cmd;
+RS = 0;
+E = 1;
+delay_ms(2);
+E = 0;
+}
+void lcd_data(unsigned char data)
+{
+LCD = data;
+RS = 1;
+E = 1;
+delay_ms(2);
+E = 0;
+}
+void delay_ms(unsigned intt)
+{
+unsigned inti, j;
+for(i = 0; i < t; i++)
+for(j = 0; j < 165; j++);
+}
