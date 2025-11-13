@@ -1,0 +1,23 @@
+Stepper Motor Interfacing with 8051 using ULN2003A Driver Code -
+#include <reg52.h>
+void delay(void);
+void main(void)
+{
+while(1)
+{
+P2 = 0x33;
+delay();
+P2 = 0x66;
+delay();
+P2 = 0xCC;
+delay();
+P2 = 0x99;
+delay();
+}
+}
+void delay(void)
+{
+unsigned int i, j;
+for(i = 0; i < 500; i++) // increase these values forlonger delay
+for(j = 0; j < 500;j++); // innerloop
+}
