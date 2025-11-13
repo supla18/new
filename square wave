@@ -1,0 +1,19 @@
+Generate Square wave using Timer with Interrupt Code -
+#include sbit sq= P2^1;
+void delay(void);
+void main(void)
+{ P2=0x00; while(1)
+{ sq=0; delay();
+sq=1; delay();
+}
+}
+void delay(void)
+{
+TMOD=0X10;
+TH1=0XA4;
+TL1=0XFF;
+TR1=1;
+while(TF1==0)
+TF1=0;
+TR1=0;
+}
